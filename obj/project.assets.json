@@ -8084,24 +8084,31 @@
     ]
   },
   "packageFolders": {
-    "/home/aspire5734z/.nuget/packages/": {}
+    "C:\\Users\\HP820G3\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/aspire5734z/Documents/GitHub/Cybergames/Cybergames.csproj",
+      "projectUniqueName": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj",
       "projectName": "Cybergames",
-      "projectPath": "/home/aspire5734z/Documents/GitHub/Cybergames/Cybergames.csproj",
-      "packagesPath": "/home/aspire5734z/.nuget/packages/",
-      "outputPath": "/home/aspire5734z/Documents/GitHub/Cybergames/obj/",
+      "projectPath": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj",
+      "packagesPath": "C:\\Users\\HP820G3\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/aspire5734z/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\HP820G3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8114,11 +8121,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8177,7 +8179,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.406/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,88 @@
+﻿@page "{id:int}"
+@model Cybergames.Pages.Admin.Games.EditModel
+@{
+    ViewData["Title"] = "Edit Game";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Edit Game</h1>
+
+    <form method="post" class="max-w-2xl">
+        <input type="hidden" asp-for="Game.ID" />
+
+        <div class="mb-4">
+            <label asp-for="Game.Title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+            <input asp-for="Game.Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Title" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+            <select asp-for="Game.Category" asp-items="Model.CategoryOptions" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select a category</option>
+            </select>
+            <span asp-validation-for="Game.Category" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Price" class="block text-gray-700 text-sm font-bold mb-2">Price</label>
+            <input asp-for="Game.Price" type="number" step="0.01" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Price" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+            <textarea asp-for="Game.Description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="4"></textarea>
+            <span asp-validation-for="Game.Description" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Cover" class="block text-gray-700 text-sm font-bold mb-2">Cover URL</label>
+            <input asp-for="Game.Cover" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Cover" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Img1" class="block text-gray-700 text-sm font-bold mb-2">Image 1 URL</label>
+            <input asp-for="Game.Img1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Img1" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Img2" class="block text-gray-700 text-sm font-bold mb-2">Image 2 URL</label>
+            <input asp-for="Game.Img2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Img2" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Img3" class="block text-gray-700 text-sm font-bold mb-2">Image 3 URL</label>
+            <input asp-for="Game.Img3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Img3" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Img4" class="block text-gray-700 text-sm font-bold mb-2">Image 4 URL</label>
+            <input asp-for="Game.Img4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Img4" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Game.Img5" class="block text-gray-700 text-sm font-bold mb-2">Image 5 URL</label>
+            <input asp-for="Game.Img5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span asp-validation-for="Game.Img5" class="text-red-500 text-xs"></span>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Save Changes
+            </button>
+            <a href="/Admin/Games" class="text-blue-500 hover:text-blue-700">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

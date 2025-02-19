@@ -3,21 +3,21 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<!-- hero -->
 <section class="hero d-flex align-items-center bg-black">
     <canvas id="fireworksCanvas"></canvas>
     <div class="position-relative z-1 text-center text-white w-100">
         <div class="row justify-content-center mx-0">
             <div class="col-lg-8">
                 <h1 class="display-1">Welcome to CyberGames</h1>
-                <p class="lead mb-5">Creating exceptional web experiences that spark innovation and drive success. Let's bring your digital vision to life.</p>
-                <a href="#services" class="btn btn-primary btn-lg px-4 me-3">Discover More</a>
-                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Get Started</a>
+                <p class="lead mb-5">Discover the future of gaming with our cutting-edge experience</p>
+                <a href="#" class="btn btn-primary btn-lg px-4 me-3">Explore Games</a>
+                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Join now</a>
             </div>
         </div>
     </div>
 </section>
-    <script>
+<script>
                 (function() {
                     const canvas = document.getElementById('fireworksCanvas');
                     const ctx = canvas.getContext('2d');
@@ -121,6 +121,29 @@
                     animate();
                 })();
             </script>
+
+<!-- slut på hero -->
+    <h1>Featured Games</h1>
+    <div class="game-container">
+        @foreach (var game in Model.Games)
+        {
+            <div class="game-card">
+                <img src="@game.Cover" alt="@game.Title" />
+                <div class="game-card-body">
+                    <h2>@game.Title</h2>
+                    <p>@game.Description</p>
+                    <button type="button" class="btn btn-primary">Add to cart</button>
+                    <div class="game-card-footer">
+                        <span>$@game.Price</span>
+                        <span class="category">@game.Category</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
 
 
 

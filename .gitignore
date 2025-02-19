@@ -1,0 +1,29 @@
+# Build files
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs and database
+*.log
+logs/
+db.sqlite
+db.sqlite-journal
+
+# ASP.NET temporary files
+.vscode/
+*.vs/
+wwwroot/node_modules/
+node_modules/
+
+# Configurations
+appsettings.*.json
+secrets.json
+
+# Generated files
+*.pid
+*.cache
