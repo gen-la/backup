@@ -1,31 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj": {}
+    "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Cybergames.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj": {
+    "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Cybergames.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj",
+        "projectUniqueName": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Cybergames.csproj",
         "projectName": "Cybergames",
-        "projectPath": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\Cybergames.csproj",
-        "packagesPath": "C:\\Users\\HP820G3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP820G3\\source\\repos\\Cybergames\\obj\\",
+        "projectPath": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/Cybergames.csproj",
+        "packagesPath": "/Users/mustafaalnaser/.nuget/packages/",
+        "outputPath": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP820G3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mustafaalnaser/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -96,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

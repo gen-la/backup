@@ -1,153 +1,71 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+ViewData["Title"] = "Home page";
 }
-<!-- hero -->
-<section class="hero d-flex align-items-center bg-black">
+
+<!-- Hero Section -->
+<section class="hero d-flex align-items-center bg-black position-relative overflow-hidden">
     <canvas id="fireworksCanvas"></canvas>
     <div class="position-relative z-1 text-center text-white w-100">
         <div class="row justify-content-center mx-0">
             <div class="col-lg-8">
-                <h1 class="display-1">Welcome to CyberGames</h1>
-                <p class="lead mb-5">Discover the future of gaming with our cutting-edge experience</p>
-                <a href="#" class="btn btn-primary btn-lg px-4 me-3">Explore Games</a>
-                <a href="#contact" class="btn btn-outline-light btn-lg px-4">Join now</a>
+                <h1 class="display-1 animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
+                <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
+                <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
+                    <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<script>
-                (function() {
-                    const canvas = document.getElementById('fireworksCanvas');
-                    const ctx = canvas.getContext('2d');
-
-                    function resizeCanvas() {
-                        canvas.width = canvas.offsetWidth;
-                        canvas.height = canvas.offsetHeight;
-                    }
-                    
-                    resizeCanvas();
-                    window.addEventListener('resize', resizeCanvas);
-
-                    const particles = [];
-                    const fireworks = [];
-
-                    class Firework {
-                        constructor() {
-                            this.x = Math.random() * canvas.width;
-                            this.y = canvas.height;
-                            this.targetY = Math.random() * (canvas.height * 0.5);
-                            this.speed = 3;
-                            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                        }
-
-                        update() {
-                            this.y -= this.speed;
-                            return this.y > this.targetY;
-                        }
-
-                        draw() {
-                            ctx.fillStyle = this.color;
-                            ctx.beginPath();
-                            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-
-                        explode() {
-                            for (let i = 0; i < 50; i++) {
-                                particles.push(new Particle(this.x, this.y, this.color));
-                            }
-                        }
-                    }
-
-                    class Particle {
-                        constructor(x, y, color) {
-                            this.x = x;
-                            this.y = y;
-                            this.color = color;
-                            const angle = Math.random() * Math.PI * 2;
-                            const speed = Math.random() * 5 + 2;
-                            this.velX = Math.cos(angle) * speed;
-                            this.velY = Math.sin(angle) * speed;
-                            this.life = 1;
-                        }
-
-                        update() {
-                            this.x += this.velX;
-                            this.y += this.velY;
-                            this.velY += 0.1;
-                            this.life -= 0.02;
-                            return this.life > 0;
-                        }
-
-                        draw() {
-                            ctx.fillStyle = this.color;
-                            ctx.globalAlpha = this.life;
-                            ctx.beginPath();
-                            ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
-                    }
-
-                    function animate() {
-                        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                        if (Math.random() < 0.05) {
-                            fireworks.push(new Firework());
-                        }
-
-                        for (let i = fireworks.length - 1; i >= 0; i--) {
-                            if (!fireworks[i].update()) {
-                                fireworks[i].explode();
-                                fireworks.splice(i, 1);
-                            } else {
-                                fireworks[i].draw();
-                            }
-                        }
-
-                        for (let i = particles.length - 1; i >= 0; i--) {
-                            if (!particles[i].update()) {
-                                particles.splice(i, 1);
-                            } else {
-                                particles[i].draw();
-                            }
-                        }
-
-                        ctx.globalAlpha = 1;
-                        requestAnimationFrame(animate);
-                    }
-                    animate();
-                })();
-            </script>
-
-<!-- slut på hero -->
-    <h1>Featured Games</h1>
-    <div class="game-container">
-        @foreach (var game in Model.Games)
-        {
-            <div class="game-card">
+<!-- Trending Games Section -->
+<section class="trending-games py-5 ">
+    <div class="container">
+        <h1 class="text-center mb-5 neon-text">Trending Games</h1>
+        <div class="trending-games-scroll">
+            @foreach (var game in Model.Games.Take(7))
+            {
+            <div class="trending-game-card" data-aos="fade-right">
                 <img src="@game.Cover" alt="@game.Title" />
+                <div class="trending-game-overlay">
+                    <h3>@game.Title</h3>
+                    <a href="#" class="btn btn-outline-light">View Details</a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- Featured Games Section (Untouched) -->
+<section id="featured-games" class="featured-games py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-5 neon-text">Featured Games</h1>
+        <div class="game-container">
+            @foreach (var game in Model.Games)
+            {
+            <div class="game-card animate__animated animate__fadeInUp">
+                <img src="@game.Cover" alt="@game.Title" class="game-card-image" />
                 <div class="game-card-body">
-                    <h2>@game.Title</h2>
-                    <p>@game.Description</p>
-                    <button type="button" class="btn btn-primary">Add to cart</button>
+                    <h2 class="game-card-title">@game.Title</h2>
+                    <p class="game-card-description">@game.Description</p>
+                    <form method="post" asp-page-handler="AddToCart" class="game-card-form">
+                        <input type="hidden" name="id" value="@game.ID" />
+                        <input type="hidden" name="title" value="@game.Title" />
+                        <input type="hidden" name="price" value="@game.Price" />
+                        <div class="input-group mb-3">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control" aria-label="Quantity" />
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </form>
                     <div class="game-card-footer">
-                        <span>$@game.Price</span>
+                        <span class="game-card-price">$@game.Price</span>
                         <span class="category">@game.Category</span>
                     </div>
                 </div>
             </div>
-        }
+            }
+        </div>
     </div>
-
-
-
-
-
-
-
-
- 
-  
+</section>

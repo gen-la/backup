@@ -7,21 +7,22 @@ namespace Cybergames.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly CartService _cartService; // Inject CartService
 
-        // List of games, including the hardcoded data
+        // List of games
         public List<Game> Games { get; set; } = new()
         {
-new Game { 
-    ID = 1, 
-    Title = "Cyberpunk 2077", 
-    Price = 59.99m, 
-    Description = "A futuristic RPG game.",
-    Category = "RPG",
-    Cover = "https://cdn.thegamesdb.net/images/original/boxart/front/14517-1.jpg",
-    Img1 = "https://example.com/img1.jpg",
-    Img2 = "https://example.com/img2.jpg"
-},
-new Game { 
+            new Game { 
+                ID = 1, 
+                Title = "Cyberpunk 2077", 
+                Price = 59.99m, 
+                Description = "A futuristic RPG game.",
+                Category = "RPG",
+                Cover = "https://cdn.thegamesdb.net/images/original/boxart/front/14517-1.jpg",
+                Img1 = "https://example.com/img1.jpg",
+                Img2 = "https://example.com/img2.jpg"
+            },
+            new Game { 
     ID = 2, 
     Title = "The Witcher 3: Wild Hunt", 
     Price = 39.99m, 
@@ -94,14 +95,31 @@ new Game {
 
         };
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, CartService cartService)
         {
             _logger = logger;
+            _cartService = cartService; // Inject CartService
         }
 
         public void OnGet()
         {
-            // Any logic you want to run when the page loads can go here
+            var cart = _cartService.GetCart();
+            ViewData["CartItemCount"] = cart.Items.Sum(item => item.Quantity);        }
+
+        // Handle adding a game to the cart
+        public IActionResult OnPostAddToCart(int id, string title, decimal price, int quantity)
+        {
+            var cart = _cartService.GetCart();
+            cart.AddItem(new CartItem
+            {
+                Id = id,
+                Name = title,
+                Price = price,
+                Quantity = quantity
+            });
+            _cartService.SaveCart(cart);
+
+            return RedirectToPage(); // Refresh the page
         }
     }
 }
