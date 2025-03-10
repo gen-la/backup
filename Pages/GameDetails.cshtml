@@ -1,0 +1,82 @@
+@page "{id}"
+@model Cybergames.Pages.GameDetailsModel
+@{
+    ViewData["Title"] = Model.Game?.Title ?? "Game Details";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Spelcover och bilder -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="@Model.Game.Cover" alt="@Model.Game.Title" class="card-img-top" />
+            </div>
+            <div class="row">
+                @if (!string.IsNullOrEmpty(Model.Game.Img1))
+                {
+                <div class="col-md-4 mb-3">
+                    <img src="@Model.Game.Img1" alt="Image 1" class="img-fluid rounded" />
+                </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Game.Img2))
+                {
+                <div class="col-md-4 mb-3">
+                    <img src="@Model.Game.Img2" alt="Image 2" class="img-fluid rounded" />
+                </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.Game.Img3))
+                {
+                <div class="col-md-4 mb-3">
+                    <img src="@Model.Game.Img3" alt="Image 3" class="img-fluid rounded" />
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Spelinformation -->
+        <div class="col-md-6">
+            <h1 class="display-4 fw-bold">@Model.Game.Title</h1>
+            <p class="lead">@Model.Game.Description</p>
+            <div class="mb-4">
+                <span class="badge bg-primary fs-5">$@((int)Model.Game.Price)</span>
+                <span class="badge bg-secondary fs-5 ms-2">@Model.Game.Category</span>
+            </div>
+
+            <form method="post" asp-page-handler="AddToCart" class="mb-4">
+                <input type="hidden" name="id" value="@Model.Game.ID" />
+                <input type="hidden" name="title" value="@Model.Game.Title" />
+                <input type="hidden" name="price" value="@Model.Game.Price" />
+                <div class="input-group" style="max-width: 300px;">
+                    <input type="number" name="quantity" value="1" min="1" class="form-control" />
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+
+                </div>
+            </form>
+
+            <a asp-page="/Index" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left"></i> Back to Games
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Ytterligare bilder -->
+@if (!string.IsNullOrEmpty(Model.Game.Img4) || !string.IsNullOrEmpty(Model.Game.Img5))
+{
+<div class="container my-5">
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.Game.Img4))
+        {
+        <div class="col-md-6 mb-3">
+            <img src="@Model.Game.Img4" alt="Image 4" class="img-fluid rounded" />
+        </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.Game.Img5))
+        {
+        <div class="col-md-6 mb-3">
+            <img src="@Model.Game.Img5" alt="Image 5" class="img-fluid rounded" />
+        </div>
+        }
+    </div>
+</div>
+}

@@ -6,25 +6,6 @@ using Cybergames.Data;
 
 namespace Cybergames.Pages.Admin.Games
 {
-    //public class IndexModel : PageModel
-    //{
-    //    private readonly ApplicationDbContext _context;
-
-    //    public IndexModel(ApplicationDbContext context)
-    //    {
-    //        _context = context;
-    //    }
-
-    //   public IList<Game> Games { get;set; } = default!;
-
-    //    public async Task OnGetAsync()
-    //    {
-    //        Games = await _context.Games.ToListAsync();
-    //    }
-
-
-    //}
-
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -36,9 +17,26 @@ namespace Cybergames.Pages.Admin.Games
 
         public IList<Game> Games { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        [BindProperty(SupportsGet = true)]
+        public string searchString { get; set; }
+
+        //public async Task OnGetAsync()
+        //{
+        //    Games = await _context.Games.ToListAsync();
+        //}
+        public async Task OnGetAsync(string searchString)
         {
-            Games = await _context.Games.ToListAsync();
+            var games = from g in _context.Games
+                         select g;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(s => s.Title.Contains(searchString) ||
+                s.Category.Contains(searchString));
+            }
+
+
+            Games = await games.ToListAsync();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int? id)

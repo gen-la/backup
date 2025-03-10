@@ -5,23 +5,26 @@ ViewData["Title"] = "Home page";
 }
 
 <!-- Hero Section -->
-<section class="hero d-flex align-items-center bg-black position-relative overflow-hidden">
+<section class="hero d-flex align-items-center position-relative overflow-hidden">
     <canvas id="fireworksCanvas"></canvas>
     <div class="position-relative z-1 text-center text-white w-100">
-        <div class="row justify-content-center mx-0">
-            <div class="col-lg-8">
-                <h1 class="display-1 animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
-                <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
-                <div class="animate__animated animate__fadeInUp animate__delay-2s">
-                    <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
-                    <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="animate__animated animate__fadeInDown neon-text">Welcome to CyberGames</h1>
+                    <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">Discover the future of gaming with our cutting-edge experience</p>
+                    <div class="animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#featured-games" class="btn btn-primary btn-lg px-4 me-3 glow-on-hover">Explore Games</a>
+                        <a id="register" asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4 glow-on-hover">Join now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- Trending Games Section -->
-<section class="trending-games py-5 ">
+<section class="trending-games py-5">
     <div class="container">
         <h1 class="text-center mb-5 neon-text">Trending Games</h1>
         <div class="trending-games-scroll">
@@ -31,15 +34,16 @@ ViewData["Title"] = "Home page";
                 <img src="@game.Cover" alt="@game.Title" />
                 <div class="trending-game-overlay">
                     <h3>@game.Title</h3>
-                    <a href="#" class="btn btn-outline-light">View Details</a>
+                    <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-light">View Details</a>
                 </div>
             </div>
             }
         </div>
     </div>
 </section>
-<!-- Featured Games Section (Untouched) -->
-<section id="featured-games" class="featured-games py-5 bg-light">
+
+<!-- Featured Games Section -->
+<section id="featured-games" class="featured-games py-5">
     <div class="container">
         <h1 class="text-center mb-5 neon-text">Featured Games</h1>
         <div class="game-container">
@@ -49,7 +53,6 @@ ViewData["Title"] = "Home page";
                 <img src="@game.Cover" alt="@game.Title" class="game-card-image" />
                 <div class="game-card-body">
                     <h2 class="game-card-title">@game.Title</h2>
-                    <p class="game-card-description">@game.Description</p>
                     <form method="post" asp-page-handler="AddToCart" class="game-card-form">
                         <input type="hidden" name="id" value="@game.ID" />
                         <input type="hidden" name="title" value="@game.Title" />
@@ -60,8 +63,9 @@ ViewData["Title"] = "Home page";
                         </div>
                     </form>
                     <div class="game-card-footer">
-                        <span class="game-card-price">$@game.Price</span>
+                        <span class="game-card-price">$@((int)game.Price)</span>
                         <span class="category">@game.Category</span>
+                        <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-primary">View Details</a>
                     </div>
                 </div>
             </div>
@@ -69,3 +73,4 @@ ViewData["Title"] = "Home page";
         </div>
     </div>
 </section>
+

@@ -8,6 +8,7 @@ public class CartItem
 }
 
 // Models/ShoppingCart.cs
+// Models/ShoppingCart.cs
 public class ShoppingCart
 {
     public List<CartItem> Items { get; set; } = new List<CartItem>();
@@ -32,6 +33,11 @@ public class ShoppingCart
         {
             Items.Remove(item); // Remove item from the cart
         }
+    }
+
+    public void Clear()
+    {
+        Items.Clear(); // Remove all items from the cart
     }
 
     public decimal CalculateTotal()

@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets/css/Index.css"
     },
     {
+      "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/gameDetalis.css",
+      "PackagePath": "staticwebassets/css/gameDetalis.css"
+    },
+    {
       "Id": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

@@ -1,25 +1,124 @@
 :root {
   --primary-color: #0078ff;
   --background-color: #000000;
-  --text-color: #333;
-  --text-light: #555;
+  --text-color: #ffffff;
+  --text-light: #cccccc;
   --white: #ffffff;
   --black: #000;
   --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+/* navbar design  */
+.navbar {
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+  box-shadow: var(--shadow);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  color: var(--white) !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.navbar-brand:hover {
+  color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-light) !important;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color) !important;
+  transform: translateY(-2px);
+}
+
+.navbar-toggler {
+  border: none;
+  color: var(--white);
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav .nav-item {
+  position: relative;
+}
+
+.navbar-nav .nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+.navbar-nav .nav-item:hover::after {
+  width: 100%;
 }
 
 /* Kassa ikonen  */
 .cart-badge {
-  background-color: red !important; 
-  color: white !important; 
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
   font-weight: bold;
   padding: 2px 5px;
   border-radius: 50%;
+  font-size: 0.75rem;
+  margin-left: 5px;
 }
+
+
+/* Footer Styles */
+footer {
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+  color: var(--white);
+}
+
+footer .btn-outline-light {
+  border: 2px solid var(--primary-color);
+  color: var(--white);
+  transition: var(--transition);
+}
+
+
+footer .btn-outline-light:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+footer .social-icon {
+  color: var(--white);
+  transition: var(--transition);
+}
+
+footer .social-icon:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px);
+}
+
+footer .lc-block svg {
+  transition: var(--transition);
+  margin-bottom: 2%;
+}
+
+footer .lc-block svg:hover {
+  fill: var(--primary-color);
+  transform: scale(1.1);
+}
+
+
+

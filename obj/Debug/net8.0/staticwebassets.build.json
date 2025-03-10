@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ley8LwW6tdKKdkbjlNDX4lBp+1y41YS1g4GgLSiIEmo=",
+  "Hash": "44fXtfKIxu/9Mh/tP2vko4eayp/t1wsHwQ2/5puRTHU=",
   "Source": "Cybergames",
   "BasePath": "_content/Cybergames",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/obj/Debug/net8.0/scopedcss/projectbundle/Cybergames.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/gameDetalis.css",
+      "SourceId": "Cybergames",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/",
+      "BasePath": "_content/Cybergames",
+      "RelativePath": "css/gameDetalis.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/gameDetalis.css"
     },
     {
       "Identity": "/Users/mustafaalnaser/Desktop/cybergames/Cybergames/wwwroot/css/Index.css",

@@ -1,0 +1,62 @@
+﻿@page
+@model Cybergames.Pages.CategoryModel
+@{
+    ViewData["Title"] = $"{Model.CategoryName} Games";
+}
+
+<div class="container py-5">
+    <h1 class="mb-4">@Model.CategoryName Games</h1>
+
+    @if (!Model.Games.Any())
+    {
+        <div class="alert alert-info">
+            <p>No games found in this category.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var game in Model.Games)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="@game.Cover" class="card-img-top" alt="@game.Title" style="height: 300px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">@game.Title</h5>
+                            <p class="card-text text-muted">@game.Category</p>
+                            <p class="card-text"><strong>@game.Price.ToString("C")</strong></p>
+
+                            <button class="btn btn-sm btn-outline-primary mt-2 read-more-btn">Read Description</button>
+
+                            <div class="description-container mt-3" style="display: none;">
+                                <p class="card-text description-text">@game.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const descriptionContainer = this.nextElementSibling;
+
+                    if (descriptionContainer.style.display === 'none') {
+                        descriptionContainer.style.display = 'block';
+                        this.textContent = 'Hide Description';
+                    } else {
+                        descriptionContainer.style.display = 'none';
+                        this.textContent = 'Read Description';
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -7,6 +7,33 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+/* Multi-column dropdown styles */
+@media (min-width: 768px) {
+    .dropdown-menu.show {
+        display: block;
+    }
+
+    .dropdown-menu .row {
+        margin: 0;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+        white-space: normal;
+    }
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Mobile dropdown adjustments */
+@media (max-width: 767.98px) {
+    .dropdown-menu {
+        width: 100% !important;
+    }
+}
+
 a {
   color: #0077cc;
 }

@@ -4,51 +4,6 @@
     ViewData["Title"] = "Game Management";
 }
 
-@*<div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold">Game Management</h1>
-        <a href="/Admin/Games/Create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Add New Game
-        </a>
-    </div>
-
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-300">
-            <thead>
-                <tr>
-                    <th class="px-6 py-3 border-b border-gray-300 bg-gray-100">Title</th>
-                    <th class="px-6 py-3 border-b border-gray-300 bg-gray-100">Category</th>
-                    <th class="px-6 py-3 border-b border-gray-300 bg-gray-100">Price</th>
-                    <th class="px-6 py-3 border-b border-gray-300 bg-gray-100">Cover</th>
-                    <th class="px-6 py-3 border-b border-gray-300 bg-gray-100">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var game in Model.Games)
-                {
-                    <tr>
-                        <td class="px-6 py-4 border-b border-gray-300">@game.Title</td>
-                        <td class="px-6 py-4 border-b border-gray-300">@game.Category</td>
-                        <td class="px-6 py-4 border-b border-gray-300">@game.Price.ToString("C")</td>
-                        <td class="px-6 py-4 border-b border-gray-300">
-                            <img src="@game.Cover" alt="@game.Title" class="w-20 h-20 object-cover"/>
-                        </td>
-                        <td class="px-6 py-4 border-b border-gray-300">
-                            <a href="/Admin/Games/Edit/@game.ID" class="text-blue-500 hover:text-blue-700 mr-4">Edit</a>
-                            <form method="post" action="/Admin/Games/Delete/@game.ID" class="inline">
-                                <button type="submit" class="text-red-500 hover:text-red-700" 
-                                        onclick="return confirm('Are you sure you want to delete this game?')">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>*@
-
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold">Game Management</h1>
@@ -56,6 +11,13 @@
             Add New Game
         </a>
     </div>
+
+    <form method="get">
+        <p>
+            Search: <input type="text" name="SearchString" value="@Model.searchString">
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
 
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-300">
