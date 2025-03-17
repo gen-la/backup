@@ -36,7 +36,9 @@
                     <tr>
                         <td class="px-6 py-4 border-b border-gray-300">@game.Title</td>
                         <td class="px-6 py-4 border-b border-gray-300">@game.Category</td>
-                        <td class="px-6 py-4 border-b border-gray-300">@game.Price.ToString("C")</td>
+                        <td class="px-6 py-4 border-b border-gray-300">
+                            @game.Price.ToString("C", new System.Globalization.CultureInfo("en-US"))
+                        </td>
                         <td class="px-6 py-4 border-b border-gray-300">
                             <img src="@game.Cover" alt="@game.Title" class="w-20 h-20 object-cover" />
                         </td>

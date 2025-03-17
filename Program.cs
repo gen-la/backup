@@ -8,7 +8,11 @@ using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    // Add authorization to Admin folder
+    options.Conventions.AuthorizeFolder("/Admin");
+});
 
 // Add DbContext configuration for MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -21,6 +25,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add Identity services
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add authorization policy for admin@admin.com
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireAssertion(context =>
+            context.User.Identity.IsAuthenticated &&
+            context.User.HasClaim(c =>
+                c.Type == System.Security.Claims.ClaimTypes.Email &&
+                c.Value == "admin@admin.com")));
+});
 
 // Add session support
 builder.Services.AddSession(options =>
@@ -36,6 +51,7 @@ builder.Services.AddHttpContextAccessor();
 // Register CartService
 builder.Services.AddScoped<CartService>();
 
+builder.Services.AddScoped<GameService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,5 +73,12 @@ app.UseAuthentication(); // Ensure authentication is enabled
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+// Add this before app.Run();
+// Ensure admin user has the email claim
+using (var scope = app.Services.CreateScope())
+{
+    await AdminSetup.EnsureAdminUserHasEmailClaim(app.Services);
+}
 
 app.Run();

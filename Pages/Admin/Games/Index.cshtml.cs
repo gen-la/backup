@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Cybergames.Models;
 using Cybergames.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cybergames.Pages.Admin.Games
 {
+    [Authorize(Policy = "AdminOnly")]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -20,21 +22,16 @@ namespace Cybergames.Pages.Admin.Games
         [BindProperty(SupportsGet = true)]
         public string searchString { get; set; }
 
-        //public async Task OnGetAsync()
-        //{
-        //    Games = await _context.Games.ToListAsync();
-        //}
         public async Task OnGetAsync(string searchString)
         {
             var games = from g in _context.Games
-                         select g;
+                        select g;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 games = games.Where(s => s.Title.Contains(searchString) ||
                 s.Category.Contains(searchString));
             }
-
 
             Games = await games.ToListAsync();
         }

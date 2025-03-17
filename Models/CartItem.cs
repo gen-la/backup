@@ -18,11 +18,11 @@ public class ShoppingCart
         var existingItem = Items.FirstOrDefault(i => i.Id == item.Id);
         if (existingItem != null)
         {
-            existingItem.Quantity += item.Quantity; // Update quantity if item already exists
+            existingItem.Quantity += item.Quantity;
         }
         else
         {
-            Items.Add(item); // Add new item to the cart
+            Items.Add(item);
         }
     }
 
@@ -31,17 +31,17 @@ public class ShoppingCart
         var item = Items.FirstOrDefault(i => i.Id == itemId);
         if (item != null)
         {
-            Items.Remove(item); // Remove item from the cart
+            Items.Remove(item);
         }
     }
 
     public void Clear()
     {
-        Items.Clear(); // Remove all items from the cart
+        Items.Clear(); // Töm varukorgen
     }
 
     public decimal CalculateTotal()
     {
-        return Items.Sum(i => i.Price * i.Quantity); // Calculate total price
+        return Items.Sum(item => item.Price * item.Quantity);
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Cybergames.Models;
 using Cybergames.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cybergames.Pages
 {
@@ -11,17 +13,23 @@ namespace Cybergames.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly CartService _cartService;
         private readonly ApplicationDbContext _context;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
         public List<Game> Games { get; set; } = new();
         public int CurrentPage { get; set; } = 1;
         public int TotalPages { get; set; }
         private const int PageSize = 12; // Number of games per page
 
-        public IndexModel(ILogger<IndexModel> logger, CartService cartService, ApplicationDbContext context)
+        public IndexModel(
+            ILogger<IndexModel> logger, 
+            CartService cartService, 
+            ApplicationDbContext context,
+            SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
             _cartService = cartService;
             _context = context;
+            _signInManager = signInManager;
         }
 
         public async Task OnGetAsync(int pageIndex = 1)
@@ -35,10 +43,18 @@ namespace Cybergames.Pages
                 .Take(PageSize)
                 .ToListAsync();
 
-            var cart = _cartService.GetCart();
-            ViewData["CartItemCount"] = cart.Items.Sum(item => item.Quantity);
+            if (_signInManager.IsSignedIn(User))
+            {
+                var cart = _cartService.GetCart();
+                ViewData["CartItemCount"] = cart.Items.Sum(item => item.Quantity);
+            }
+            else
+            {
+                ViewData["CartItemCount"] = 0;
+            }
         }
 
+        [Authorize]
         public IActionResult OnPostAddToCart(int id, string title, decimal price, int quantity)
         {
             var cart = _cartService.GetCart();

@@ -1,0 +1,52 @@
+@page
+@model Cybergames.Pages.PurchasedGamesModel
+@{
+ViewData["Title"] = "Purchased Games";
+}
+
+<div class="container py-5">
+    <h1 class="display-4 mb-4 fw-bold text-center">Your Game Library</h1>
+
+    @if (Model.PurchasedGames.Any())
+    {
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var game in Model.PurchasedGames)
+        {
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 game-card">
+                <div class="position-relative">
+                    <img src="@game.Cover" class="card-img-top game-cover" alt="@game.Title">
+                    <span class="badge bg-primary position-absolute top-0 end-0 m-2">@game.Category</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">@game.Title</h5>
+
+                    <div class="d-flex gap-2 mt-auto">
+                        <a asp-page="/GameDetails" asp-route-id="@game.ID" class="btn btn-outline-primary flex-grow-1">
+                            <i class="bi bi-info-circle me-1"></i>Details
+                        </a>
+                        <form method="post" asp-page-handler="RemoveGame" asp-route-gameId="@game.ID" class="flex-grow-1">
+                            <button type="submit" class="btn btn-outline-danger w-100">
+                                <i class="bi bi-trash me-1"></i>Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    }
+    else
+    {
+    <div class="text-center py-5 empty-library">
+        <div class="mb-4">
+            <i class="bi bi-controller fs-1 text-muted"></i>
+        </div>
+        <h3 class="text-muted">Your game library is empty</h3>
+        <p class="lead text-muted mb-4">Explore our store to find your next gaming adventure</p>
+        <a href="/Index" class="btn btn-primary btn-lg px-4">Browse Games</a>
+    </div>
+    }
+</div>
+
